@@ -3,7 +3,7 @@ import telebot
 import os
 from torrent import main
 
-token = os.environ['token']
+token = os.environ["token"]
 bot = telebot.TeleBot(token)
 
 logger = telebot.logger
@@ -47,17 +47,26 @@ def help_command(message):
 def torrent_command(message):
     keyboard = telebot.types.InlineKeyboardMarkup()
     data = main.handle_search(message.text.split("-", 1)[1])
-    for x in data:
-        keyboard.row(
-            telebot.types.InlineKeyboardButton(
-                f'{x["seeders"]} - {x["name"]}',
-                callback_data=f"get-torrent-{x['info_hash']}",
-            )
+    if not data:
+        bot.send_message(
+            message.chat.id,
+            "Invalid category - subcategory combination",
+            reply_markup=keyboard,
         )
+    else:
+        for x in data:
+            keyboard.row(
+                telebot.types.InlineKeyboardButton(
+                    f'{x["seeders"]} - {x["name"]}',
+                    callback_data=f"get-torrent-{x['info_hash']}",
+                )
+            )
 
-    bot.send_message(
-        message.chat.id, "Click on the item to get magnet link:\n Seeders - Title", reply_markup=keyboard
-    )
+        bot.send_message(
+            message.chat.id,
+            "Click on the item to get magnet link:\n Seeders - Title",
+            reply_markup=keyboard,
+        )
 
 
 def send_magnet_link(query):
