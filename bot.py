@@ -33,7 +33,7 @@ def help_command(message):
         "This bot returns the list of top 10 torrents for search term sorted by seeders \n"
         + "1) Send the following command in the same order and case: \n"
         + "torrent - <YOUR_SEARCH_TERM> - <CATEGORY> - <SUBCATEGORY>\n"
-        + "If you don't send category and subcategory, it will return search in all categories"
+        + "If you don't send category and subcategory, it will return search in all categories\n"
         + "2) You will see top 10 items in reply in following format:\n"
         + "<Number of seeders> - <Title>\n"
         + "4) Click the relevant title from list. \n"
