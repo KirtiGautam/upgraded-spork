@@ -1,5 +1,7 @@
 import os
-PARAMS = os.environ['PARAMS']
+
+# Torrent trackers for magnet links
+TRACKERS = os.environ.get('PARAMS', '')
 
 CATEGORIES = {
     "audio": {
