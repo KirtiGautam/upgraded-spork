@@ -2,3 +2,5 @@ env
 .vscode
 .env
 __pycache__
+target
+setup.sh
